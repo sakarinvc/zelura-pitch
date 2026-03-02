@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zelura — One Pager</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #0c0c0c;
+    --surface:  #141414;
+    --surface-2:#1a1a1a;
+    --text:     #e8e8e8;
+    --text-2:   #a0a0a0;
+    --text-3:   #606060;
+    --rule:     #2a2a2a;
+    --rule-2:   #1e1e1e;
+    --accent:   #e8e8e8;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  /* ─── Typography ───────────────────── */
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+
+  .doc-sub { font-size: 13px; color: var(--text-2); margin-bottom: 2px; }
+  .doc-meta { font-size: 10px; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; }
+
+  hr { border: none; border-top: 1px solid var(--rule); margin: 28px 0; }
+
+  /* ─── Section ──────────────────────── */
+  .s { margin-bottom: 36px; }
+  .s-num { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 3px; }
+  .s-title { font-family: 'Playfair Display', Georgia, serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .s-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 14px; }
+
+  /* ─── Tags ─────────────────────────── */
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+  .tag { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--rule); color: var(--text-2); }
+
+  /* ─── Two Column ───────────────────── */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .col-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); border-bottom: 1px solid var(--text-2); padding-bottom: 5px; margin-bottom: 12px; display: inline-block; }
+  .col-h { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .col-p { font-size: 12px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55; }
+
+  /* ─── Bullet ───────────────────────── */
+  .bl { list-style: none; }
+  .bl li { font-size: 12px; padding: 3px 0 3px 12px; position: relative; color: var(--text-2); }
+  .bl li::before { content: '\2014'; position: absolute; left: 0; color: var(--text-3); font-size: 10px; }
+
+  /* ─── Figure ───────────────────────── */
+  .fig { border: 1px solid var(--rule); margin: 14px 0; overflow: hidden; }
+  .fig-img { width: 100%; aspect-ratio: 16/10; background: var(--surface); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .fig-img img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+
+  /* ─── Lightbox Modal ─────────────── */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
+  .fig-ph { font-size: 11px; color: var(--text-3); padding: 16px; text-align: center; }
+  .fig-cap { font-size: 10px; color: var(--text-3); padding: 6px 10px; border-top: 1px solid var(--rule-2); font-style: italic; }
+
+  .fig-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+  .fig-pair .fig { margin: 0; }
+
+  /* ─── Table ────────────────────────── */
+  .ctbl { width: 100%; border-collapse: collapse; font-size: 12px; margin: 10px 0; }
+  .ctbl th { text-align: left; font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); padding: 6px 10px; border-bottom: 1px solid var(--text-2); }
+  .ctbl td { padding: 8px 10px; border-bottom: 1px solid var(--rule-2); color: var(--text-2); vertical-align: top; }
+  .ctbl .hl td { color: var(--text); font-weight: 600; background: var(--surface); }
+  .ctbl .tg { display: inline-block; font-size: 9px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 6px; border: 1px solid var(--text); color: var(--text); }
+
+  /* ─── Marketplace Grid ─────────────── */
+  .mp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+  .mp-c { border: 1px solid var(--rule); padding: 14px 16px; }
+  .mp-l { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 3px; }
+  .mp-c h4 { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .mp-c .hk { font-size: 11px; font-style: italic; color: var(--text-2); margin-bottom: 6px; }
+  .mp-c .fl { font-size: 10px; color: var(--text-3); }
+  .mp-c .fl span { color: var(--text-2); }
+
+  /* ─── Revenue ──────────────────────── */
+  .rv { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--rule); }
+  .rv-i { padding: 14px 16px; text-align: center; }
+  .rv-i:not(:last-child) { border-right: 1px solid var(--rule-2); }
+  .rv-t { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 2px; }
+  .rv-n { font-size: 14px; font-weight: 700; margin-bottom: 1px; }
+  .rv-d { font-size: 10px; color: var(--text-2); }
+
+  /* ─── Timeline ─────────────────────── */
+  .tl { display: grid; grid-template-columns: repeat(3, 1fr); position: relative; margin: 14px 0; }
+  .tl::before { content: ''; position: absolute; top: 5px; left: 8%; right: 8%; height: 1px; background: var(--rule); }
+  .tl-p { position: relative; padding-top: 22px; text-align: center; }
+  .tl-d { width: 6px; height: 6px; border-radius: 50%; background: var(--text-2); border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--rule); position: absolute; top: 2px; left: 50%; transform: translateX(-50%); }
+  .tl-p:first-child .tl-d { background: var(--text); }
+  .tl-p:last-child .tl-d { background: var(--text-3); }
+  .tl-l { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; color: var(--text-2); }
+  .tl-p:first-child .tl-l { color: var(--text); }
+  .tl-is { list-style: none; font-size: 11px; color: var(--text-3); }
+  .tl-is li { padding: 2px 0; }
+
+  /* ─── Footer ───────────────────────── */
+  .foot { text-align: center; padding-top: 20px; border-top: 1px solid var(--text-2); margin-top: 36px; }
+  .foot-q { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 700; line-height: 1.6; margin-bottom: 8px; color: var(--text-2); }
+  .foot-s { font-size: 10px; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ─── Responsive ───────────────────── */
+  @media (max-width: 640px) {
+    .page { padding: 28px 20px; }
+    h1 { font-size: 22px; }
+    .s-title { font-size: 16px; }
+    .cols { grid-template-columns: 1fr; gap: 20px; }
+    .fig-pair { grid-template-columns: 1fr; }
+    .mp { grid-template-columns: 1fr; }
+    .rv { grid-template-columns: 1fr; }
+    .rv-i:not(:last-child) { border-right: none; border-bottom: 1px solid var(--rule-2); }
+    .tl { grid-template-columns: 1fr; gap: 20px; }
+    .tl::before { display: none; }
+    .tl-d { display: none; }
+    .tl-p { padding-top: 0; text-align: left; padding-left: 12px; border-left: 1px solid var(--rule); }
+    .ctbl { font-size: 11px; }
+    .ctbl th, .ctbl td { padding: 6px; }
+  }
+
+  /* ─── Print ────────────────────────── */
+  @media print {
+    @page { margin: 0.5in; size: A4; }
+    body { background: white; color: #1a1a1a; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { padding: 0; max-width: none; }
+    :root { --bg:#fff; --surface:#f8f8f8; --surface-2:#f0f0f0; --text:#1a1a1a; --text-2:#555; --text-3:#999; --rule:#ddd; --rule-2:#eee; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <h1>Zelura</h1>
+  <p class="doc-sub">AI Agent Platform &mdash; Use, Build, Sell</p>
+  <hr>
+
+  <!-- 01 -->
+  <section class="s">
+    <div class="s-num">01</div>
+    <div class="s-title">Two-Sided Platform for AI Agents</div>
+    <p class="s-desc">
+      A platform where anyone can use AI agents through a simple chat interface,
+      and anyone can build and sell agents through a visual workflow canvas.
+      Users don't need to know how AI works. Creators don't need to write code.
+    </p>
+  </section>
+
+  <!-- 02 -->
+  <section class="s">
+    <div class="s-num">02</div>
+    <div class="s-title">Users Chat. Creators Build.</div>
+
+    <div class="cols">
+      <div>
+        <div class="col-label">For Users</div>
+        <div class="col-h">Just open and chat</div>
+        <p class="col-p">
+          Pick an agent from the marketplace. Start chatting. The agent greets you,
+          explains what it can do, and walks you through every step.
+        </p>
+        <ul class="bl">
+          <li>Chat-first, as simple as any messaging app</li>
+          <li>Interactive UI widgets (no more walls of text)</li>
+          <li>Guided onboarding built into every agent</li>
+          <li>Browse and use agents instantly</li>
+        </ul>
+      </div>
+      <div>
+        <div class="col-label">For Creators</div>
+        <div class="col-h">Build agents, build a business</div>
+        <p class="col-p">
+          Drag nodes on a visual canvas. Connect skills and providers.
+          Chain multiple agents into a team. Publish to the marketplace and earn.
+        </p>
+        <ul class="bl">
+          <li>Visual canvas builder, no code required</li>
+          <li>Attach skills and AI providers to agents</li>
+          <li>Multi-agent handoff for complex workflows</li>
+          <li>Sell on the marketplace or distribute free</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fig-pair">
+      <div class="fig">
+        <div class="fig-img">
+          <img src="public/freepik__a-rough-handdrawn-pencil-sketch-on-white-paper-dra__51631.jpeg" alt="Fig. 1 — Chat interface with interactive widget">
+        </div>
+        <div class="fig-cap">Fig. 1: User view. Chat with greeting, widget confirmation, and generated output.</div>
+      </div>
+      <div class="fig">
+        <div class="fig-img">
+          <img src="public/freepik__a-rough-handdrawn-pencil-sketch-on-white-paper-lik__51630.jpeg" alt="Fig. 2 — Creator canvas with agent workflow">
+        </div>
+        <div class="fig-cap">Fig. 2: Creator view. Visual canvas with multi-agent chain and providers.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="s">
+    <div class="s-num">03</div>
+    <div class="s-title">Competitive Positioning</div>
+
+    <table class="ctbl">
+      <thead>
+        <tr>
+          <th>Players</th>
+          <th>Type</th>
+          <th>Capability</th>
+          <th>Limitation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Freepik, Midjourney, Higgsfield</td>
+          <td>Tool</td>
+          <td>Single AI capability done well</td>
+          <td>One task only, no customization or resale</td>
+        </tr>
+        <tr>
+          <td>Freepik Spaces&thinsp;&dagger;</td>
+          <td>Workflow</td>
+          <td>Node-based canvas for creative pipelines</td>
+          <td>Scoped to generation only, no agents, no marketplace</td>
+        </tr>
+        <tr>
+          <td>ChatGPT, Gemini, Claude</td>
+          <td>Chat</td>
+          <td>Versatile general-purpose AI</td>
+          <td>No workflows, no marketplace</td>
+        </tr>
+        <tr class="hl">
+          <td>Zelura <span class="tg">Platform</span></td>
+          <td>Platform</td>
+          <td>Use, build, and sell AI agents</td>
+          <td>Two-sided marketplace + creator tools</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="border:1px solid var(--rule); padding:14px 16px; margin-top:14px;">
+      <p style="font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-3); margin-bottom:4px;">&dagger; Closest comparison</p>
+      <p style="font-size:13px; font-weight:700; margin-bottom:6px;">
+        <a href="https://www.freepik.com/spaces" style="color:var(--text); text-decoration:none; border-bottom:1px solid var(--rule);">Freepik Spaces</a>
+        <span style="font-size:10px; font-weight:400; color:var(--text-3); margin-left:6px;">Launched Nov 2025</span>
+        <br>
+        <a href="https://www.freepik.com/spaces" style="font-size:10px; color:#6d9eff; word-break:break-all;">https://www.freepik.com/spaces</a>
+      </p>
+      <p style="font-size:12px; color:var(--text-2); line-height:1.55; margin-bottom:8px;">
+        Freepik recently launched a node-based canvas that looks similar to ours on the surface.
+        However, it&rsquo;s scoped entirely to creative asset production&thinsp;&mdash;&thinsp;users plot prompts,
+        arrange shots, and generate images/videos within Freepik&rsquo;s own AI tools. There are no autonomous agents,
+        no marketplace for selling workflows, and no chat interface for end-users.
+      </p>
+      <ul style="list-style:none; font-size:11px; color:var(--text-3);">
+        <li style="padding:2px 0 2px 12px; position:relative;"><span style="position:absolute;left:0;">—</span> A creative pipeline tool, not an agent platform</li>
+        <li style="padding:2px 0 2px 12px; position:relative;"><span style="position:absolute;left:0;">—</span> Built for professional designers and creative teams, not normal users</li>
+        <li style="padding:2px 0 2px 12px; position:relative;"><span style="position:absolute;left:0;">—</span> No agents, no skills, no providers, no multi-agent handoff</li>
+        <li style="padding:2px 0 2px 12px; position:relative;"><span style="position:absolute;left:0;">—</span> No marketplace&thinsp;&mdash;&thinsp;users cannot package and sell their workflows</li>
+      </ul>
+    </div>
+
+    <p style="font-size:12px; color:var(--text-3); margin-top:12px; font-style:italic;">
+      They build apps. We build the App Store.
+    </p>
+  </section>
+
+  <!-- 04 -->
+  <section class="s">
+    <div class="s-num">04</div>
+    <div class="s-title">Interactive Widgets</div>
+
+    <div class="cols">
+      <div>
+        <p class="col-p" style="margin-bottom:12px;">
+          Unlike standard AI chats that rely on boring walls of text, Zelura agents render rich, interactive UI directly inside the chat stream.
+          The AI freely controls these interfaces to make interactions beautiful and intuitive. It's infinitely scalable: whether it's a Suno music player, a confirmation dialog, or a multi-page document viewer.
+          We launch with a complete set of default widgets, and seamlessly add new specialized UI components as new AI capabilities emerge.
+        </p>
+        <div class="tags">
+          <span class="tag">Confirm</span>
+          <span class="tag">Gallery</span>
+          <span class="tag">Form</span>
+          <span class="tag">Media</span>
+          <span class="tag">Progress</span>
+        </div>
+      </div>
+      <div>
+        <div class="fig" style="margin:0;">
+          <div class="fig-img" style="aspect-ratio:4/3;">
+            <img src="public/freepik__a-rough-handdrawn-pencil-sketch-on-white-paper-lik__51632.jpeg" alt="Fig. 3 — Confirm widget inline">
+          </div>
+          <div class="fig-cap">Fig. 3: Confirmation widget. AI provides title, description, and button labels.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="s">
+    <div class="s-num">05</div>
+    <div class="s-title">Marketplace</div>
+
+    <p class="s-desc" style="margin-bottom:12px;">
+      Every agent is a self-contained product with its own story, audience,
+      and marketing hook. Not a prompt template &mdash; a complete experience through chat.
+    </p>
+
+    <div class="mp">
+      <div class="mp-c">
+        <div class="mp-l">Content Creation</div>
+        <h4>OnlyFans Creator</h4>
+        <div class="hk">"Generate and monetize content with AI"</div>
+        <div class="fl"><span>Brief</span> &rarr; <span>Generate</span> &rarr; <span>Review</span> &rarr; <span>Caption</span> &rarr; <span>Schedule</span> &rarr; <span>Post</span></div>
+      </div>
+      <div class="mp-c">
+        <div class="mp-l">Entertainment</div>
+        <h4>Movie Maker</h4>
+        <div class="hk">"Create episodic short films with AI"</div>
+        <div class="fl"><span>Concept</span> &rarr; <span>Script</span> &rarr; <span>Storyboard</span> &rarr; <span>Scenes</span> &rarr; <span>Audio</span> &rarr; <span>Export</span></div>
+      </div>
+      <div class="mp-c">
+        <div class="mp-l">Social Intelligence</div>
+        <h4>TikTok Trend Hunter</h4>
+        <div class="hk">"Know what trends before everyone else"</div>
+        <div class="fl"><span>Crawl</span> &rarr; <span>Analyze</span> &rarr; <span>Score</span> &rarr; <span>Brief</span> &rarr; <span>Recommend</span></div>
+      </div>
+      <div class="mp-c">
+        <div class="mp-l">Revenue</div>
+        <h4>Affiliate Machine</h4>
+        <div class="hk">"Build passive income through affiliate"</div>
+        <div class="fl"><span>Niche</span> &rarr; <span>Research</span> &rarr; <span>Content</span> &rarr; <span>SEO</span> &rarr; <span>Publish</span> &rarr; <span>Track</span></div>
+      </div>
+    </div>
+    
+    <p style="font-size:11px; color:var(--text-3); margin-top:10px; font-style:italic; text-align:center;">
+      &mdash; And endless other possibilities. Any workflow can be packaged into an agent. &mdash;
+    </p>
+  </section>
+
+  <!-- 06 -->
+  <section class="s">
+    <div class="s-num">06</div>
+    <div class="s-title">The Marketplace Experience</div>
+
+    <p class="s-desc" style="margin-bottom:14px;">
+      Users browse the marketplace like scrolling a social feed. Every agent card shows a thumbnail
+      of real output &mdash; the result speaks for itself. No technical jargon, no setup guides.
+      Just click-worthy results that make people think: &ldquo;I want that.&rdquo;
+    </p>
+
+    <div class="cols">
+      <div>
+        <div class="col-h" style="font-size:13px;">Browse &rarr; Preview &rarr; Use</div>
+        <p class="col-p" style="margin-bottom:10px;">
+          Marketplace cards are designed for impulse. Users see output thumbnails first &mdash;
+          a generated short film, a viral post, an AI photoshoot. Tap a card to see details:
+          which AI models power it, the workflow breakdown, creator info, and a one-tap &ldquo;Use Agent&rdquo; button.
+        </p>
+
+        <div class="col-h" style="font-size:13px; margin-top:10px;">Same category, different results</div>
+        <p class="col-p">
+          Two agents can both make AI short films &mdash; but one uses a cinematic video model with a 5-agent pipeline
+          for scriptwriting, storyboarding, scene generation, sound design, and editing,
+          while another uses a faster model with a simpler 3-step flow.
+          Different creators, different skills, different providers, different output.
+          The marketplace rewards craft, not just category.
+        </p>
+      </div>
+      <div>
+        <div class="fig" style="margin:0;">
+          <div class="fig-img" style="aspect-ratio:4/3;">
+            <img src="public/freepik__a-rough-handdrawn-pencil-sketch-on-white-paper-lik__51633.jpeg" alt="Fig. 4 — Marketplace browse view">
+          </div>
+          <div class="fig-cap">Fig. 4: Marketplace feed. Thumbnail-first cards with output previews and one-tap use.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="s">
+    <div class="s-num">07</div>
+    <div class="s-title">Revenue Model</div>
+    
+    <p class="s-desc" style="margin-bottom:14px;">
+      Our core monetization mirrors successful AI tools like Freepik and Higgsfield (subscription + credit usage). 
+      However, because Zelura is a platform, we unlock two massive additional markets: a two-sided <b>Marketplace</b> 
+      and an ecosystem that scales far beyond just media generation into <b>business automation</b>.
+    </p>
+
+    <div class="rv">
+      <div class="rv-i">
+        <div class="rv-t">Recurring</div>
+        <div class="rv-n">Subscription</div>
+        <div class="rv-d">Monthly plans to access agents</div>
+      </div>
+      <div class="rv-i">
+        <div class="rv-t">Commission</div>
+        <div class="rv-n">Marketplace Fee</div>
+        <div class="rv-d">Revenue share on agent sales</div>
+      </div>
+      <div class="rv-i">
+        <div class="rv-t">Usage</div>
+        <div class="rv-n">AI Credits</div>
+        <div class="rv-d">Pay-per-use for generation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section class="s">
+    <div class="s-num">08</div>
+    <div class="s-title">Roadmap</div>
+
+    <p class="s-desc" style="margin-bottom:14px;">
+      Platform launches feature-complete. Every new AI model that enters the market
+      instantly unlocks a wave of new agents &mdash; the platform scales with the industry.
+    </p>
+
+    <div class="tl">
+      <div class="tl-p">
+        <div class="tl-d"></div>
+        <div class="tl-l">Launch (Closed Beta)</div>
+        <ul class="tl-is">
+          <li>Creator builder LOCKED to prevent low-quality spam</li>
+          <li>We build 100% of the first-wave agents in-house</li>
+          <li>Every agent is viral-ready &mdash; built to be shared on social</li>
+          <li>All essential AI models &amp; providers included on day 1</li>
+        </ul>
+      </div>
+      <div class="tl-p">
+        <div class="tl-d"></div>
+        <div class="tl-l">Growth (Open Platform)</div>
+        <ul class="tl-is">
+          <li>Unlock the visual builder for the public</li>
+          <li>External creators expand the marketplace organically</li>
+          <li>Browser extension for loop-based UI automation</li>
+          <li>(e.g., auto-posting to TikTok with affiliate links)</li>
+        </ul>
+      </div>
+      <div class="tl-p">
+        <div class="tl-d"></div>
+        <div class="tl-l">Scale</div>
+        <ul class="tl-is">
+          <li>Commerce: Crypto &amp; PayPal payment providers</li>
+          <li>New widgets: Storefronts, product cards, checkouts</li>
+          <li>Every chat can become a standalone AI business</li>
+          <li>Third-party provider marketplace</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-size:11px; color:var(--text-3); margin-top:10px; font-style:italic;">
+      At launch, we seed the marketplace with trend-focused workflows &mdash; because as a dev, taking a viral video or task and reverse-engineering its workflow into an agent is trivial. As the platform scales, we introduce commerce. An agent won't just generate content; it will sell courses, digital products, or services directly in the chat using interactive storefront widgets. Every chat becomes an infinite, scalable business. We don&rsquo;t build the businesses &mdash; creators do. We just provide the engine.
+    </p>
+  </section>
+
+  <!-- 09 -->
+  <section class="s">
+    <div class="s-num">09</div>
+    <div class="s-title">Behind the Scenes: The Multi-Agent Engine</div>
+
+    <p class="s-desc" style="margin-bottom:14px;">
+      Inspired by open-source architectures like <a href="https://github.com/openclaw/openclaw" style="color:var(--text); border-bottom:1px solid var(--rule); text-decoration:none;">OpenClaw</a>, 
+      Zelura doesn't rely on a single monolithic prompt. Instead, each "Agent" on the marketplace is actually a complete <i>virtual company</i> operating in the background.
+    </p>
+
+    <div class="cols">
+      <div>
+        <div class="col-h" style="font-size:13px;">LLMs with arms, legs, and brains</div>
+        <p class="col-p" style="margin-bottom:10px;">
+          Take an "IG Creator from Zero" agent as an example. When users chat, they aren't talking to one monolithic AI. They are interacting with a virtual company. The <b>Manager Agent</b> (powered by the highly capable Gemini 3.1 Pro) oversees the process. It delegates brief gathering to an edgy <b>Front-desk Agent</b> (Grok), which then passes data to a <b>Scriptwriter Agent</b> (Claude Opus 4.6 for elite writing). A specialized <b>Art Director Agent</b> generates a consistent virtual influencer avatar. Another agent handles video prompt generation (Gemini 3.0 Pro), while an <b>Automation Agent</b> posts the final content to Instagram. Different brains for different tasks, all working seamlessly together.
+        </p>
+
+        <div class="col-h" style="font-size:13px; margin-top:10px;">Making the complex, simple</div>
+        <p class="col-p">
+          Each sub-agent has a dedicated LLM "brain" and specific API "limbs" (skills and providers like Midjourney or browser automation). They work in isolated loops, executing their specific tasks flawlessly before passing the baton. The engineering challenge isn't just orchestrating this pipeline&mdash;it's hiding it. Normal users never see this complexity. They just chat, approve generated avatars or posts via beautiful UI widgets, and get the final result.
+        </p>
+      </div>
+      <div>
+        <div class="fig" style="margin:0;">
+          <div class="fig-img" style="aspect-ratio:4/3;">
+            <img src="public/freepik__a-rough-handdrawn-pencil-sketch-on-white-paper-ill__74326.jpeg" alt="Fig. 5 — Multi-agent architecture">
+          </div>
+          <div class="fig-cap">Fig. 5: Behind the scenes. A single user request orchestrates a pipeline of specialized sub-agents.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <div class="foot-q">
+      We build the engine.<br>
+      Creators build everything else.<br>
+      Users just chat.
+    </div>
+    <div class="foot-s">Zelura &middot; 2026</div>
+  </div>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+  document.querySelectorAll('.fig-img img').forEach(function(img) {
+    img.addEventListener('click', function() {
+      var lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = this.src;
+      lb.classList.add('open');
+    });
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  });
+</script>
+</body>
+</html>
